@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Address Book";
+}
+@model AddressBookApp.Models.AddressList;
+
+<h1 class="display-4">Index</h1>
+<a href="" class="btn btn-outline-primary">Add Contact</a>
+<div class="Card border mt-3">
+    <div class="card-header">
+        <div class="row justify-content-center">
+            <div class="col-12 mb-3 mb-md-0 col-md-4 ">
+                <div class="input-group">
+                    <label class="input-group-text">Show &nbsp;</label>
+                    <select class="form-control">
+                        <option value="5">5 entries</option>
+                        <option value="10" selected>10 entries</option>
+                        <option value="25">25 entries</option>
+                    </select>
+                    @*<span class="input-group-text" >entries</span>*@
+                </div>
+            </div>
+            <div class="col-12 col-md-4 ">
+                <div class="input-group">
+                    <button type="button" class="btn btn-outline-secondary">Search: </button>
+                    <input type="text" name="search" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body ">
+        <table class="table table-bordered ">
+            <thead class="table-secondary">
+                <tr class="text-center">
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Address1</th>
+                    <th>Address2</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            @if (Model.Addresses.Count > 0)
+            {
+                <tbody>
+                    @foreach (var ad in @Model.Addresses)
+                    {
+                        <tr class="text-center">
+                            <td>@ad.Name</td>
+                            <td>Image</td>
+                            <td>@ad.Address1</td>
+                            <td>@ad.Address2</td>
+                            <td>@ad.City</td>
+                            <td>@ad.State</td>
+                            <td>@ad.ZipCode</td>
+                            <td>@ad.Email</td>
+                            <td>@ad.Phone</td>
+                        </tr>
+
+                    }
+                </tbody>
+
+            }
+            else
+            {
+                <tr class="mt-3">
+                    <td colspan="9" class="text-center">
+                        <div>Oops...looks like you haven't added anyone yet!</div>
+                        <a href="" class="btn btn-outline-primary mt-3">Add Contact now!</a>
+                    </td>
+
+                </tr>
+            }
+
+
+
+
+        </table>
+    </div>
+
+    <div class="card-footer bg-light">
+        <div class="row">
+            <div class="col-4">
+                Showing 0 of @Model.Addresses.Count entries now
+            </div>
+            <a href="" class="page-link col-2">
+                Previous
+            </a>
+            <a href="" class="page-link col-2">
+                Next
+            </a>
+        </div>
+
+    </div>
+
+</div>

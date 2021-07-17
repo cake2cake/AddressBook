@@ -1,0 +1,98 @@
+﻿@model IEnumerable<AddressBookApp.Models.Contact>
+@inject AddressBookApp.Services.Interfaces.IImageService imgService
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped table-bordered table-hover"  id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Photo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Address1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Modified)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="">
+            <td class="">
+                <img class="img-fluid" src="@imgService.ConvertByteArrayToFile(item.ImageData, item.ImageType)" />
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>            
+            <td class="">
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td class="">
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>            
+            <td class="">
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>            
+            <td >
+                <div style="width: 150px;">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
